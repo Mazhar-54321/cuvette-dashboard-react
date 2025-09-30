@@ -34,11 +34,12 @@ function LoginPage({onLoggedIn}:any) {
       const data = await axios.post(`${import.meta.env.VITE_BASE_URL}/apiKey`,{apiKey:apiKey}, {
         timeout: 10000,
       });
+      
       if (data?.data) {
         onLoggedIn(apiKey);
       }
     } catch (err) {
-      toast.error('Error creating api key',{autoClose:1000})
+      toast.error(err?.response?.data??'Network error',{autoClose:1000})
     } finally {
       setLoading(false);
     }
@@ -54,7 +55,7 @@ function LoginPage({onLoggedIn}:any) {
       }}
     >
       {loading && <Loader />}
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex" ,maxWidth:'500px' }}>
         <p
           onClick={() => setActiveTab("guide")}
           style={{
@@ -62,9 +63,10 @@ function LoginPage({onLoggedIn}:any) {
             padding: "10px",
             borderBottom:
               activeTab === "guide" ? "2px solid  #767676" : "transparent",
-            fontWeight: activeTab === "guide" ? "bold" : "light",
+            fontWeight: activeTab === "guide" ? "900" : "100",
             cursor: "pointer",
             textAlign: "center",
+            color:activeTab === "guide"?'#767676':'#737373'
           }}
         >
           Guide
@@ -76,9 +78,10 @@ function LoginPage({onLoggedIn}:any) {
             padding: "10px",
             borderBottom:
               activeTab === "login" ? "2px solid  #767676" : "transparent",
-            fontWeight: activeTab === "login" ? "bold" : "light",
+            fontWeight: activeTab === "login" ? "900" : "100",
             cursor: "pointer",
             textAlign: "center",
+            color:activeTab === "login"?'#767676':'#737373'
           }}
         >
           Login
@@ -90,9 +93,10 @@ function LoginPage({onLoggedIn}:any) {
             padding: "10px",
             borderBottom:
               activeTab === "create" ? "2px solid  #767676" : "transparent",
-            fontWeight: activeTab === "create" ? "bold" : "light",
+            fontWeight: activeTab === "create" ? "900" : "100",
             cursor: "pointer",
             textAlign: "center",
+            color:activeTab === "create"?'#767676':'#737373'
           }}
         >
           Create API Key
@@ -104,22 +108,24 @@ function LoginPage({onLoggedIn}:any) {
           textAlign: "center",
           display: "flex",
           justifyContent: "center",
+          margin:'2rem'
         }}
       >
         {activeTab === "guide" && (
           <div style={{ padding: "20px", textAlign: "left" }}>
-            <h1>Guide to use Cuvette Api Logger</h1>
-            <h2 style={{ color: "#767676" }}>
+            <h1 style={{ color: "#767676" }}>Guide to use Cuvette Api Logger</h1>
+            <h2 style={{ color: "#737373" }}>
               Step 1: npm i cuvette-api-tracer
             </h2>
-            <h2 style={{ color: "#767676" }}>
+            <h2 style={{ color: "#737373" }}>
               {" "}
               Step 2: import logger from 'cuvette-api-tracer' in index.js file
             </h2>
-            <h2 style={{ color: "#767676" }}>Step 3 : app.use(logger())</h2>
-            <h2 style={{ color: "#767676" }}>
+            <h2 style={{ color: "#737373" }}>Step 3 : app.use(logger())</h2>
+            <h2 style={{ color: "#737373" }}>
               Step 4 : Attach api-key in req headers x-api-key attribute
             </h2>
+            <h3>Note: Always check configuration tab if data is not found</h3>
           </div>
         )}
 

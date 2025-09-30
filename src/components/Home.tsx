@@ -17,7 +17,7 @@ export const colorObj: any = {
   4: "red",
   5: "red",
 };
-const Home = () => {
+const Home = ({tick}) => {
   const [systemStatus, setSystemStatus] = useState<any>({});
   const [showCalendar, setShowCalendar] = useState(false);
   const [paginationList, setPaginationList] = useState<any>([]);
@@ -67,7 +67,7 @@ const Home = () => {
       month: new Date().getMonth(),
       year: new Date().getFullYear(),
     });
-  }, []);
+  }, [tick]);
   const handleOutsideClick = useCallback((event: MouseEvent) => {
     if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
       setShowCalendar(false);

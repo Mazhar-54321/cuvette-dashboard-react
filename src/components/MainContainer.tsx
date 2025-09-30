@@ -15,19 +15,24 @@ const sideBarData = [
 const MainContainer = () => {
   const [tab, setTab] = useState<Number>(0);
   const [isLoggedIn, setIsLoggedIn] = useState<Boolean>(false);
+  const [tick,setTick]=useState(0);
   const changeTab = (tabIndex: Number) => {
+    if(tabIndex === tab){
+        setTick(prev=>prev+1);
+    }else{
     setTab(tabIndex);
+    }
   };
   const getMainLayout = (tab: Number) => {
     switch (tab) {
       case 0:
-        return <Home />;
+        return <Home tick={tick} />;
       case 1:
-        return <Tracer />;
+        return <Tracer tick={tick}/>;
       case 2:
-        return <Analysis />;
+        return <Analysis tick={tick} />;
       case 3:
-        return <Configuration />;
+        return <Configuration tick={tick}/>;
     }
   };
   const onLoggedIn = (apiKey:string)=>{
@@ -68,6 +73,8 @@ const MainContainer = () => {
               overflowX: "hidden",
               position: "relative",
               maxWidth: "80%",
+              maxHeight:'100vh',
+              overflowY:'auto',
               backgroundColor: "#060B26",
             }}
           >

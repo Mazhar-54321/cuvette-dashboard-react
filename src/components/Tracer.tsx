@@ -6,13 +6,13 @@ import Tracerblock from "./Tracerblock";
 import NoData from "./NoData";
 import { toast } from "react-toastify";
 
-const Tracer = () => {
+const Tracer = ({tick}:any) => {
   const [loading, setLoading] = useState(false);
   const [formattedLogs,setFormattedLogs]=useState<any>({});
   const [show,setShow]=useState<any>();
   useEffect(() => {
     getAllLogs();
-  }, []);
+  }, [tick]);
   async function getAllLogs() {
     setLoading(true);
     try {
@@ -57,7 +57,7 @@ const Tracer = () => {
     setFormattedLogs(map);
   }
   return (
-    <div style={{ padding: "1.5rem",overflowX:'hidden',maxWidth:'100%' }}>
+    <div style={{ padding: "1.5rem",overflowX:'hidden',maxWidth:'100%', }}>
       <h3 style={{ fontSize: "32px", padding: "0px", margin: "0px",marginBottom:'1rem' }}>
         API Trace Logs
       </h3>

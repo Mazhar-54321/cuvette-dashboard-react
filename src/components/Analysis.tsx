@@ -13,13 +13,13 @@ const labels: any = {
   totalRequestVolume: "Total Request Volume",
   uptimePercentage: "Uptime Percentage",
 };
-const Analysis = () => {
+const Analysis = ({tick}:any) => {
   const [analysisData, setAnalysisData] = useState({});
   const [loading, setLoading] = useState(false);
   const [chartData, setChartData] = useState([]);
   useEffect(() => {
     fetchAnalysisData();
-  }, []);
+  }, [tick]);
   async function fetchAnalysisData() {
     setLoading(true);
     try {
@@ -91,16 +91,17 @@ const Analysis = () => {
                 {Object.keys(analysisData)?.map((key: string) => (
                   <div
                     style={{
-                      padding: "1rem",
+                      padding: "2rem",
                       backgroundColor: "#1A1F37",
                       borderRadius: "0.5rem",
                       width: "15rem",
+                      flexGrow:1
                     }}
                   >
-                    <h4 style={{ padding: 0, margin: 0 }}>{labels[key]}</h4>
-                    <h3 style={{ padding: 0, margin: 0 }}>
+                    <h3 style={{ margin: 0,color:'rgba(255,255,255,0.8)',textAlign:'center' }}>{labels[key]}</h3>
+                    <h2 style={{  margin: 0,textAlign:'center' }}>
                       {analysisData[key] ?? "N.A"}
-                    </h3>
+                    </h2>
                   </div>
                 ))}
               </div>

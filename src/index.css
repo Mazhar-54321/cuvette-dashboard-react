@@ -63,7 +63,10 @@ button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-
+.tracer-block:hover,.tracer-block:focus,.open{
+  border: 1px solid #767676;
+  border-radius: 4px;
+}
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

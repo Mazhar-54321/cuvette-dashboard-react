@@ -20,10 +20,10 @@ yesterday.setDate(yesterday.getDate() - 1);
   
   return (
     <div style={{ marginTop: "1rem" }}>
-      <div style={{display:'flex',alignItems:'center',paddingLeft:'1rem',paddingRight:'1rem'}}>
+      <div className={`tracer-block ${show?'open':'close'}`} onClick={()=>{onShow(blockDate)}} style={{display:'flex',cursor:'pointer', alignItems:'center',paddingLeft:'1rem',paddingRight:'1rem'}}>
         <h2 style={{width:'60%', marginLeft: "0.5rem" }}>{getBlockHeader()}</h2>
         <h3 style={{width:'20%',padding:0,margin:0,fontWeight:'lighter'}}>Logs({blockData?.length})</h3>
-       <div  onClick={()=>{onShow(blockDate)}} style={{textAlign:'right',flexGrow:1,cursor:'pointer'}}>{show?<FaMinusCircle />:<FaPlusCircle />}</div> 
+       <div   style={{textAlign:'right',flexGrow:1,cursor:'pointer'}}>{show?<FaMinusCircle />:<FaPlusCircle />}</div> 
       </div>
       {show&& blockData?.map((log: any) => (
         <div
