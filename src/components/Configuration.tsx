@@ -1,12 +1,12 @@
 import axios from "axios";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {  useEffect, useRef, useState } from "react";
 import Loader from "./Loader";
 import "./Configuration.css";
 import { format } from "date-fns";
 import { MdMoreVert } from "react-icons/md";
 import Switch from "react-switch";
 import { FaCalendarAlt } from "react-icons/fa";
-import { DateRange, Calendar } from "react-date-range";
+import {  Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { toast } from "react-toastify";
@@ -19,13 +19,7 @@ const Configuration = ({tick}:any) => {
   const [controlErrors, setControlErrors] = useState<any>();
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [range, setRange] = useState([
-    {
-      startDate: new Date(), // default start
-      endDate: new Date(), // default end
-      key: "selection",
-    },
-  ]);
+  const [background,setBackground]=useState({});
   const ref = useRef<any>(null);
   const calendarRef = useRef<any>(null);
   const controlref = useRef<any>(null);
@@ -679,7 +673,7 @@ const Configuration = ({tick}:any) => {
             selectedControlData[el?.apiName] = {
               "API Name": { show: true, value: updatedConfig?.aliasName },
               "Tracer":{show:true,value:{start:updatedConfig?.startDate}},
-              Limit: {
+              "Limit": {
                 show: updatedConfig?.enabled,
                 value: {
                   request: updatedConfig?.numberOfRequest,
@@ -699,7 +693,12 @@ const Configuration = ({tick}:any) => {
           }
           return el;
         })
+        
       );
+      setBackground(apiObj?.apiName);
+      setTimeout(()=>{
+setBackground('');
+      },200)
       toast.info("Config updated successfully", { autoClose: 500 });
     } catch (err) {
       if (axios.isAxiosError(err)) {
@@ -719,7 +718,6 @@ const Configuration = ({tick}:any) => {
   }
   const handleSelect = (startDate: any) => {
     const startDateString = startDate.toString();
-
     const controlName = "Tracer";
     const apiName = Object.keys(control)[0];
     setControlErrors((prev: any) => ({ ...prev, [apiName]: {} }));
@@ -735,6 +733,7 @@ const Configuration = ({tick}:any) => {
         },
       },
     }));
+    setSelectedDate(startDate);
     setShowCalendar(false);
   };
   function getFormattedDateForSchedule(dateString = "") {
@@ -856,7 +855,7 @@ function validateTimeRange(start:object, end:object) {
             </thead>
             <tbody>
               {configData?.map((config: any, index: number) => (
-                <tr style={{ backgroundColor: "#1A1F37" }}>
+                <tr style={{ backgroundColor: background===config?.apiName?'#767676':"#1A1F37" }}>
                   <td
                     style={{
                       borderBottomLeftRadius:

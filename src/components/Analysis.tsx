@@ -90,6 +90,7 @@ const Analysis = ({tick}:any) => {
               >
                 {Object.keys(analysisData)?.map((key: string) => (
                   <div
+                   className="analysis-block"
                     style={{
                       padding: "2rem",
                       backgroundColor: "#1A1F37",

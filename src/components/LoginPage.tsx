@@ -125,7 +125,7 @@ function LoginPage({onLoggedIn}:any) {
             <h2 style={{ color: "#737373" }}>
               Step 4 : Attach api-key in req headers x-api-key attribute
             </h2>
-            <h3>Note: Always check configuration tab if data is not found</h3>
+            <h3>Note: We follow 24 hours time format and  Always check configuration tab if data is not found</h3>
           </div>
         )}
 
