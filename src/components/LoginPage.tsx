@@ -126,6 +126,7 @@ function LoginPage({onLoggedIn}:any) {
               Step 4 : Attach api-key in req headers x-api-key attribute
             </h2>
             <h3>Note: We follow 24 hours time format and  Always check configuration tab if data is not found</h3>
+             <h3>Note: We are using free instance of Render which will spin down with inactivity, which can delay requests by 50 seconds or more.</h3>
           </div>
         )}
 
