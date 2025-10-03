@@ -625,7 +625,7 @@ const Configuration = ({tick}:any) => {
         startDate:undefined
       };
       if(tracer?.show){
-        apiObj.startDate =tracer?.value?.start;
+        apiObj.startDate =format(tracer?.value?.start,"yyyy-MM-dd");
       }
       if (apiName?.show) {
         apiObj.aliasName = apiName?.value?.trim();
@@ -855,7 +855,7 @@ function validateTimeRange(start:object, end:object) {
             </thead>
             <tbody>
               {configData?.map((config: any, index: number) => (
-                <tr style={{ backgroundColor: background===config?.apiName?'#767676':"#1A1F37" }}>
+                <tr style={{ backgroundColor: background===config?.apiName?'#DDDDDD':"#1A1F37" }}>
                   <td
                     style={{
                       borderBottomLeftRadius:
